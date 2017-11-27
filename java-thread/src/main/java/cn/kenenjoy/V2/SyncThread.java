@@ -23,10 +23,19 @@ public class SyncThread implements Runnable {
 
     /**
      * 对这个类的实例化对象进行检查
+     * 如果您要进行类的多个实例对象进行同步检查，那么应该对这个类的class对象进行同步检查。
+     * 写法应该是：“private synchronized static void doOtherthing()”
+     *
+     * 当然为了对这个类（SyncThread）的class对象进行同步检查，
+     * 您甚至无需在静态方法上标注synchronized关键字，
+     * 而单独标注SyncThread的class的对象锁状态检查：
+     * 写法如下，避免脏读：
      */
-    private synchronized void doOtherthing() {
-        NOWVALUE = this.value;
-        logger.info("当前NOWVALUE的值：" + NOWVALUE);
+    private void doOtherthing() {
+        synchronized (SyncThread.class){
+            NOWVALUE = this.value;
+            logger.info("当前NOWVALUE的值：" + NOWVALUE);
+        }
     }
 
     @Override
