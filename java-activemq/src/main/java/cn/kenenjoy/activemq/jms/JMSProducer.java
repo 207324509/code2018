@@ -29,6 +29,9 @@ public class JMSProducer {
             outMessage.setText("这是要发送的消息内容");
             // 发送(JMS是支持事务的)
             sender.send(outMessage);
+            // 设置持久化消息和非持久化消息
+            sender.setDeliveryMode(DeliveryMode.PERSISTENT);// 持久化消息，消费成功后才被处理
+            sender.setDeliveryMode(DeliveryMode.NON_PERSISTENT);// 非持久化消息，宕机情况下会丢失
             session.commit();
             // 关闭
             sender.close();
