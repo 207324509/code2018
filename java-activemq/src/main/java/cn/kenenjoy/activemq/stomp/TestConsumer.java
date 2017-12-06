@@ -1,4 +1,4 @@
-package cn.kenenjoy.netty;
+package cn.kenenjoy.activemq.stomp;
 
 import org.apache.activemq.transport.stomp.StompConnection;
 import org.apache.activemq.transport.stomp.StompFrame;
