@@ -11,7 +11,7 @@ import javax.jms.*;
 public class JMSConsumer {
     public static void main(String[] args) {
         // 定义JMS-Active连接信息
-        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://127.0.0.1:61616");
+        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://127.0.0.1:61618");
         Session session = null;
         Destination sendQueue = null;
         Connection connection = null;
