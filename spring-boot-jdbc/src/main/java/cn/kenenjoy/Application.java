@@ -21,13 +21,21 @@ public class Application extends SpringBootServletInitializer {
         SpringApplication app = new SpringApplication(Application.class);
         app.setDefaultProperties(properties);
         app.run(args);
-
-//        SpringApplication.run(Application.class, args);
     }
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        builder.sources(this.getClass());
+        Properties properties = new Properties();
+        InputStream in = Application.class.getClassLoader().getResourceAsStream("application.properties");
+        try {
+            properties.load(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        builder.sources(Application.class);
+
+        builder.properties(properties);
         return super.configure(builder);
     }
 }
